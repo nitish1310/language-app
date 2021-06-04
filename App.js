@@ -7,8 +7,9 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
 import SplashScreen from "./screens/SplashScreen";
-
-const Stack = createStackNavigator();
+import MainStackNavigator from "./navigation/StackNavigator";
+import BottomTabNavigator from "./navigation/TabNavigator";
+import DrawerNavigator from "./navigation/DrawerNavigator";
 
 const globalScreenOptions = {
   headerStyle: { backgroundColor: "white" },
@@ -19,15 +20,19 @@ const globalScreenOptions = {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="SplashScreen"
+      {/* <MyDrawer /> */}
+      {/* <Stack.Navigator
+        // initialRouteName="SplashScreen"
         screenOptions={globalScreenOptions}
       >
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+      {/* <MainStackNavigator /> */}
+      {/* <BottomTabNavigator /> */}
+      <DrawerNavigator />
     </NavigationContainer>
   );
 }

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   StatusBar,
+  KeyboardAvoidingView,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
@@ -24,7 +25,7 @@ const LoginScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <StatusBar backgroundColor="#5288ff" style="light" />
       {/* <StatusBar backgroundColor="#009387" barStyle="light-content" /> */}
       <View style={styles.header}>
@@ -194,7 +195,7 @@ const LoginScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </Animatable.View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
