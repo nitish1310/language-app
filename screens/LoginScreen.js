@@ -1,11 +1,24 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+  StatusBar,
+} from "react-native";
+import * as Animatable from "react-native-animatable";
+import { LinearGradient } from "expo-linear-gradient";
+import { AntDesign, Entypo } from "@expo/vector-icons";
+import { Button, Input, Image } from "react-native-elements";
 
 const LoginScreen = () => {
   const signIn = () => {};
 
   return (
     <View style={styles.container}>
+      {/* <StatusBar backgroundColor="grey" style="light" /> */}
       {/* <StatusBar backgroundColor="#009387" barStyle="light-content" /> */}
       <View style={styles.header}>
         <Text style={styles.text_header}>Welcome!</Text>
@@ -17,7 +30,7 @@ const LoginScreen = () => {
         style={[
           styles.footer,
           {
-            backgroundColor: colors.background,
+            // backgroundColor: color.background,
           },
         ]}
       >
@@ -25,21 +38,25 @@ const LoginScreen = () => {
           style={[
             styles.text_footer,
             {
-              color: colors.text,
+              //   color: colors.text,
             },
           ]}
         >
           Username
         </Text>
         <View style={styles.action}>
-          <FontAwesome name="user-o" color={colors.text} size={20} />
+          <AntDesign
+            name="user"
+            //    color={colors.text}
+            size={20}
+          />
           <TextInput
             placeholder="Your Username"
             placeholderTextColor="#666666"
             style={[
               styles.textInput,
               {
-                color: colors.text,
+                // color: colors.text,
               },
             ]}
             autoCapitalize="none"
@@ -64,7 +81,7 @@ const LoginScreen = () => {
           style={[
             styles.text_footer,
             {
-              color: colors.text,
+              //   color: colors.text,
               marginTop: 35,
             },
           ]}
@@ -72,15 +89,19 @@ const LoginScreen = () => {
           Password
         </Text>
         <View style={styles.action}>
-          <Feather name="lock" color={colors.text} size={20} />
+          <AntDesign
+            name="lock"
+            //    color={colors.text}
+            size={20}
+          />
           <TextInput
             placeholder="Your Password"
             placeholderTextColor="#666666"
-            secureTextEntry={data.secureTextEntry ? true : false}
+            // secureTextEntry={data.secureTextEntry ? true : false}
             style={[
               styles.textInput,
               {
-                color: colors.text,
+                // color: colors.text,
               },
             ]}
             autoCapitalize="none"
@@ -111,27 +132,34 @@ const LoginScreen = () => {
         </TouchableOpacity>
         <View style={styles.button}>
           <TouchableOpacity
-            style={styles.signIn}
+            style={[
+              styles.signIn,
+              {
+                borderColor: "#045de9",
+                borderWidth: 1,
+                marginTop: 15,
+              },
+            ]}
             // onPress={() => {
             //   loginHandle(data.username, data.password);
             // }}
             onPress={() => signIn()}
           >
-            <LinearGradient
-              colors={["#09c6f9", "#045de9"]}
-              style={styles.signIn}
+            {/* <div
+            //   colors={["#09c6f9", "#045de9"]}
+            //   style={styles.signIn}
+            > */}
+            <Text
+              style={[
+                styles.textSign,
+                {
+                  color: "#fff",
+                },
+              ]}
             >
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: "#fff",
-                  },
-                ]}
-              >
-                Sign In
-              </Text>
-            </LinearGradient>
+              Sign In
+            </Text>
+            {/* </div> */}
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -164,4 +192,71 @@ const LoginScreen = () => {
 
 export default LoginScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#427dff",
+  },
+  header: {
+    flex: 1,
+    justifyContent: "flex-end",
+    paddingHorizontal: 20,
+    paddingBottom: 50,
+  },
+  footer: {
+    flex: 3,
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+  },
+  text_header: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 30,
+  },
+  text_footer: {
+    color: "#05375a",
+    fontSize: 18,
+  },
+  action: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f2f2f2",
+    paddingBottom: 5,
+  },
+  actionError: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#FF0000",
+    paddingBottom: 5,
+  },
+  textInput: {
+    flex: 1,
+    // marginTop: Platform.OS === "ios" ? 0 : -12,
+    paddingLeft: 10,
+    color: "#05375a",
+  },
+  errorMsg: {
+    color: "#FF0000",
+    fontSize: 14,
+  },
+  button: {
+    alignItems: "center",
+    marginTop: 50,
+  },
+  signIn: {
+    width: "100%",
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+  },
+  textSign: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+});
