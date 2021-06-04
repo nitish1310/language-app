@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import {
   Platform,
   StyleSheet,
@@ -13,18 +13,23 @@ import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { Button, Input, Image } from "react-native-elements";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const signIn = () => {};
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
-      {/* <StatusBar backgroundColor="grey" style="light" /> */}
+      <StatusBar backgroundColor="#5288ff" style="light" />
       {/* <StatusBar backgroundColor="#009387" barStyle="light-content" /> */}
       <View style={styles.header}>
         <Text style={styles.text_header}>Welcome!</Text>
       </View>
 
-      {/* <View style={styles.footer}></View> */}
       <Animatable.View
         animation="fadeInUpBig"
         style={[
@@ -136,8 +141,10 @@ const LoginScreen = () => {
               styles.signIn,
               {
                 borderColor: "#045de9",
+                backgroundColor: "#5288ff",
                 borderWidth: 1,
                 marginTop: 15,
+                color: "#ffffff",
               },
             ]}
             // onPress={() => {
@@ -168,6 +175,7 @@ const LoginScreen = () => {
               styles.signIn,
               {
                 borderColor: "#045de9",
+
                 borderWidth: 1,
                 marginTop: 15,
               },
@@ -210,6 +218,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
+    paddingTop: 50,
   },
   text_header: {
     color: "#fff",

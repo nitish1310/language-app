@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
+import SplashScreen from "./screens/SplashScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,9 +20,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        // initialRouteName="Home"
+        initialRouteName="SplashScreen"
         screenOptions={globalScreenOptions}
       >
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
