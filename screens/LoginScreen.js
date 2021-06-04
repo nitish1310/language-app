@@ -10,11 +10,12 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
-import { AntDesign, Entypo } from "@expo/vector-icons";
-import { Button, Input, Image } from "react-native-elements";
+import { AntDesign } from "@expo/vector-icons";
 
 const LoginScreen = ({ navigation }) => {
-  const signIn = () => {};
+  const signIn = () => {
+    navigation.navigate("Home");
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -170,12 +171,11 @@ const LoginScreen = ({ navigation }) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate("RegisterScreen")}
+            onPress={() => navigation.navigate("Register")}
             style={[
               styles.signIn,
               {
                 borderColor: "#045de9",
-
                 borderWidth: 1,
                 marginTop: 15,
               },
