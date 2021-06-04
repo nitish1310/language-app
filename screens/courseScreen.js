@@ -14,16 +14,16 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
-import axios from "axios";
+// import axios from "axios";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Card } from "react-native-shadow-cards";
 
-const courseScreen = ({ navigation }) => {
+const CourseScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <ScrollView style={styles.scrollView}>
-        <ActivityIndicator size="large" color="blue" animating={indicator} />
+        {/* <ActivityIndicator size="large" color="blue" animating={indicator} /> */}
         <View style={styles.header}>
           <Text style={styles.title}>French Language Course</Text>
         </View>
@@ -160,7 +160,7 @@ const courseScreen = ({ navigation }) => {
   );
 };
 
-export default courseScreen;
+export default CourseScreen;
 
 const styles = StyleSheet.create({
   container: {
