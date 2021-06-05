@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -31,6 +31,25 @@ const WordScreen = ({ navigation, route }) => {
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Word",
+      headerStyle: { backgroundColor: "#427dff" },
+      headerTitleStyle: { color: "white" },
+      //   headerTintColor: "white",
+      headerTitle: () => (
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text style={styles.titleText}>{route.params.paramWord} Word</Text>
+        </View>
+      ),
+    });
+  }, [navigation]);
 
   useEffect(() => {
     // getTranslatedWordData();
@@ -93,7 +112,7 @@ const WordScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.titleText}>French Language Course</Text>
+        {/* <Text style={styles.titleText}>French Language Course</Text> */}
         <View>
           <Animatable.Image
             animation="bounceIn"
@@ -165,7 +184,7 @@ const styles = StyleSheet.create({
 
   titleText: {
     color: "#ffffff",
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "bold",
   },
   wordTitle: {
@@ -186,6 +205,7 @@ const styles = StyleSheet.create({
     color: "grey",
     fontSize: 18,
     marginTop: 10,
+    paddingBottom: 10,
   },
   button: {
     alignItems: "flex-end",

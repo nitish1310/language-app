@@ -17,6 +17,8 @@ const globalScreenOptions = {
   headerTintColor: "white",
 };
 
+console.log(React.version);
+
 export default function App() {
   return (
     <NavigationContainer>
