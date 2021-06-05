@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -18,14 +18,31 @@ import { LinearGradient } from "expo-linear-gradient";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Card } from "react-native-shadow-cards";
 
-const CourseScreen = ({ navigation }) => {
+const CourseScreen = ({ navigation, route }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Course",
+
+      headerTitle: () => (
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text style={styles.title}>{route.params.paramTitle}</Text>
+        </View>
+      ),
+    });
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <ScrollView style={styles.scrollView}>
         {/* <ActivityIndicator size="large" color="blue" animating={indicator} /> */}
         <View style={styles.header}>
-          <Text style={styles.title}>French Language Course</Text>
+          {/* <Text style={styles.title}>French Language Course</Text> */}
         </View>
 
         <Animatable.View style={styles.footer} animation="fadeInUpBig">
@@ -39,7 +56,7 @@ const CourseScreen = ({ navigation }) => {
           <Card style={{ padding: 10 }}>
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("WordScreen", {
+                navigation.navigate("Word", {
                   paramKey: "1",
                   paramWord: "Papaya",
                   paramLang: "french",
@@ -71,7 +88,7 @@ const CourseScreen = ({ navigation }) => {
               //   navigation.navigate("myScreen");
               // }}
               onPress={() =>
-                navigation.navigate("WordScreen", {
+                navigation.navigate("Word", {
                   paramKey: "2",
                   paramWord: "Grapes",
                   paramLang: "french",
@@ -100,7 +117,7 @@ const CourseScreen = ({ navigation }) => {
           <Card style={{ padding: 10, marginTop: 12 }}>
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("WordScreen", {
+                navigation.navigate("Word", {
                   paramKey: "3",
                   paramWord: "Apples",
                   paramLang: "french",
@@ -129,7 +146,7 @@ const CourseScreen = ({ navigation }) => {
           <Card style={{ padding: 10, marginTop: 12 }}>
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("WordScreen", {
+                navigation.navigate("Word", {
                   paramKey: "4",
                   paramWord: "Orange",
                   paramLang: "french",

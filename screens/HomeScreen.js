@@ -74,7 +74,14 @@ const HomeScreen = ({ navigation }) => {
               Lorem Ipsum is simply dummy text of the printing.
             </Text>
             <Text style={styles.text}>⭐ 4.5 . By Lorem Ipsum . All Level</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Course")}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Course", {
+                  paramKey: "3",
+                  paramTitle: "French Language Course",
+                })
+              }
+            >
               <LinearGradient
                 colors={["#09c6f9", "#045de9"]}
                 style={styles.button}
