@@ -13,8 +13,6 @@ import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-import { AlanView } from "./AlanSDK.js";
-
 const SplashScreen = ({ navigation }) => {
   //   const { colors } = useTheme();
 
@@ -26,11 +24,6 @@ const SplashScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <AlanView
-        projectid={
-          "1553e56ef76697df5e29f25cd0989e032e956eca572e1d8b807a3e2338fdd0dc/stage"
-        }
-      />
       <StatusBar backgroundColor="#5288ff" style="light" />
       <View style={styles.header}>
         <Animatable.Image

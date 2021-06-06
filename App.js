@@ -11,6 +11,8 @@ import MainStackNavigator from "./navigation/StackNavigator";
 import BottomTabNavigator from "./navigation/TabNavigator";
 import DrawerNavigator from "./navigation/DrawerNavigator";
 
+import { AlanView } from "./AlanSDK.js";
+
 const globalScreenOptions = {
   headerStyle: { backgroundColor: "white" },
   headerTitleStyle: { color: "black", alignSelf: "center" },
@@ -22,6 +24,11 @@ console.log(React.version);
 export default function App() {
   return (
     <NavigationContainer>
+      {/* <AlanView
+        projectid={
+          "1553e56ef76697df5e29f25cd0989e032e956eca572e1d8b807a3e2338fdd0dc/stage"
+        }
+      /> */}
       {/* <MyDrawer /> */}
       {/* <Stack.Navigator
         // initialRouteName="SplashScreen"
