@@ -11,7 +11,7 @@ import { AntDesign } from "@expo/vector-icons";
 const ContactScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "Contact",
+      title: "Profile",
       headerStyle: { backgroundColor: "#427dff" },
       headerTitleStyle: { color: "white" },
       headerTintColor: "black",
@@ -28,7 +28,7 @@ const ContactScreen = ({ navigation }) => {
   return (
     <View>
       <StatusBar backgroundColor="#5288ff" style="light" />
-      <Text>This is the contact screen</Text>
+      <Text>This is the Profile screen</Text>
     </View>
   );
 };

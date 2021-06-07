@@ -22,35 +22,10 @@ const ChatScreen = ({ navigation, route }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "Chat",
-      headerBackTitleVisible: false,
-      headerTitleAlign: "left",
-      headerTitle: () => (
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <Avatar
-            rounded
-            source={{
-              uri:
-                messages[0]?.data.photoURL ||
-                "https://lh3.googleusercontent.com/proxy/UrxEaxy4aPfce2hxQZMQyOPKILHWwxn0fUvUUUfjUTQumb6RwX9_VFKs8y8Pqhvh74UXHQHIT77xFYx9shKNLyVCMm9qGJaa3N_qAgW7PagxdHGZ5xm6wQ",
-            }}
-          />
-          <Text
-            style={{
-              color: "white",
-              marginLeft: 10,
-              fontWeight: "700",
-            }}
-          >
-            {route.params.chatName}
-          </Text>
-        </View>
-      ),
+      title: "Chats",
+      headerStyle: { backgroundColor: "#427dff" },
+      headerTitleStyle: { color: "white" },
+      headerTintColor: "black",
       headerLeft: () => (
         <TouchableOpacity
           style={{ marginLeft: 10 }}
@@ -59,25 +34,8 @@ const ChatScreen = ({ navigation, route }) => {
           <AntDesign name="arrowleft" size={24} color="white" />
         </TouchableOpacity>
       ),
-      headerRight: () => (
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: 80,
-            marginRight: 20,
-          }}
-        >
-          <TouchableOpacity>
-            <FontAwesome name="video-camera" size={24} color="white" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Ionicons name="call" size={24} color="white" />
-          </TouchableOpacity>
-        </View>
-      ),
     });
-  }, [navigation, messages]);
+  }, [navigation]);
 
   //   const sendMessage = () => {
   //     Keyboard.dismiss();
@@ -121,10 +79,8 @@ const ChatScreen = ({ navigation, route }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <>
             <ScrollView contentContainerStyle={{ paddingTop: 15 }}>
-              {/* {messages.map(({ id, data }) =>
-                data.email === auth.currentUser.email ? ( */}
               <View
-                //   key={id}
+                //    key={id}
                 style={styles.receiver}
               >
                 <Avatar
@@ -140,15 +96,14 @@ const ChatScreen = ({ navigation, route }) => {
                   right={-5}
                   size={30}
                   source={{
-                    uri: data.photoURL,
+                    // uri: data.photoURL,
+                    uri: "https://e7.pngegg.com/pngimages/498/917/png-clipart-computer-icons-desktop-chatbot-icon-blue-angle.png",
                   }}
                 />
                 <Text style={styles.receiverText}>
-                  {/* {data.message} */}
-                  Message
+                  Smart ChatBot Response Message
                 </Text>
               </View>
-              ) : (
               <View
                 //  key={id}
                 style={styles.sender}
@@ -166,17 +121,23 @@ const ChatScreen = ({ navigation, route }) => {
                   left={-5}
                   size={30}
                   source={{
-                    uri: data.photoURL,
+                    // uri: data.photoURL,
+                    uri: "https://eshendetesia.com/images/user-profile.png",
                   }}
                 />
-                <Text style={styles.senderText}>{data.message}</Text>
-                <Text style={styles.senderName}>{data.displayName}</Text>
+                <Text style={styles.senderText}>
+                  User's Sample Message
+                  {/* {data.message} */}
+                </Text>
+                <Text style={styles.senderName}>
+                  {/* "Display Name" */}
+                  {/* {data.displayName} */}
+                </Text>
               </View>
-              ){/* )} */}
             </ScrollView>
             <View style={styles.footer}>
               <TextInput
-                value={input}
+                // value={input}
                 // onChangeText={(text) => setInput(text)}
                 // onSubmitEditing={sendMessage}
                 placeholder="Signal Message"
@@ -217,7 +178,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#2B68E6",
     alignSelf: "flex-start",
     borderRadius: 20,
-    marginRight: 15,
+    marginLeft: 15,
     marginBottom: 20,
     maxWidth: "80%",
     position: "relative",

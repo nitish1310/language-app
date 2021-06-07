@@ -6,6 +6,7 @@ import {
   MainStackNavigator,
   ContactStackNavigator,
   SettingsStackNavigator,
+  ChatStackNavigator,
 } from "./StackNavigator";
 
 import { Entypo, FontAwesome } from "@expo/vector-icons";
@@ -53,6 +54,18 @@ const TabNavigator = () => {
           // tabBarColor: "#427dff",
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="gear" color={color} size={size} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Chats"
+        component={ChatStackNavigator}
+        options={{
+          tabBarLabel: "Chats",
+          // tabBarColor: "#427dff",
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="chat" color={color} size={size} />
           ),
         }}
       />

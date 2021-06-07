@@ -11,15 +11,13 @@ import MainStackNavigator from "./navigation/StackNavigator";
 import BottomTabNavigator from "./navigation/TabNavigator";
 import DrawerNavigator from "./navigation/DrawerNavigator";
 
-import { AlanView } from "./AlanSDK.js";
-
 const globalScreenOptions = {
   headerStyle: { backgroundColor: "white" },
   headerTitleStyle: { color: "black", alignSelf: "center" },
   headerTintColor: "white",
 };
 
-console.log(React.version);
+// console.log(React.version);
 
 export default function App() {
   return (

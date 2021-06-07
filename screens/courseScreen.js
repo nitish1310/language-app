@@ -48,7 +48,7 @@ const CourseScreen = ({ navigation, route }) => {
         <Animatable.View style={styles.footer} animation="fadeInUpBig">
           <View style={{ marginBottom: 20 }}>
             <Button
-              //   onPress={() => navigation.navigate("NewWordScreen")}
+              onPress={() => navigation.navigate("NewWord")}
               style={styles.button}
               title="Try New Word"
             />

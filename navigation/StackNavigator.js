@@ -10,6 +10,8 @@ import CourseScreen from "../screens/CourseScreen";
 import SplashScreen from "../screens/SplashScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
+import NewWordScreen from "../screens/NewWordScreen";
+import ChatScreen from "../screens/ChatScreen";
 
 const Stack = createStackNavigator();
 
@@ -24,7 +26,7 @@ const screenOptionStyle = {
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      // initialRouteName="Splash"
       screenOptions={screenOptionStyle}
     >
       <Stack.Screen name="Splash" component={SplashScreen} />
@@ -34,6 +36,7 @@ const MainStackNavigator = () => {
       <Stack.Screen name="About" component={AboutScreen} />
       <Stack.Screen name="Course" component={CourseScreen} />
       <Stack.Screen name="Word" component={WordScreen} />
+      <Stack.Screen name="NewWord" component={NewWordScreen} />
     </Stack.Navigator>
   );
 };
@@ -54,6 +57,19 @@ const SettingsStackNavigator = () => {
   );
 };
 
-export { MainStackNavigator, ContactStackNavigator, SettingsStackNavigator };
+const ChatStackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Chats" component={ChatScreen} />
+    </Stack.Navigator>
+  );
+};
+
+export {
+  MainStackNavigator,
+  ContactStackNavigator,
+  SettingsStackNavigator,
+  ChatStackNavigator,
+};
 
 const styles = StyleSheet.create({});
