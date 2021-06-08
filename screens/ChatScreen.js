@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -13,12 +13,54 @@ import { Platform } from "react-native";
 import { ScrollView } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
+import axios from "axios";
 // import { db, auth } from "../firebase";
 // import firebase from "firebase/app";
 
 const ChatScreen = ({ navigation, route }) => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
+  const [weatherData, setWeatherData] = useState([]);
+
+  // let language = route.params.paramLang;
+  // const url =
+  //   "https://43f6215f6512.ngrok.io/weather/" +
+  //   language +
+  //   "/" +
+  //   route.params.paramWord;
+
+  const url = "https://3d34588ea6f4.ngrok.io/weather/Pune/1";
+  // "https://jsonplaceholder.typicode.com/users/";
+  // "https://jsonplaceholder.typicode.com/users/" + route.params.paramKey;
+  //   console.log(route.params.paramWord);
+  //   console.log(language);
+  //   console.log(url);
+
+  const getWeatherData = (cityName, value) => {
+    axios
+      // .get(`${url}`)
+      .get(`https://3d34588ea6f4.ngrok.io/weather/${cityName}/${value}`)
+      .then((response) => {
+        const allWeatherData = response.data;
+        // for (var i = 0; i < response.data.length; i++) {
+        //   if (allTranslatedWordData[i].username == "Bret") {
+        console.log(allWeatherData);
+        // const tempData = allTranslatedWordData[i];
+        setWeatherData(allWeatherData);
+        //   }
+        // }
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+
+    //     fetch("https://restcountries.eu/rest/v2/region/africa?fields=name")
+    //       .then((response) => response.json())
+    //       .then((json) => setWordData(json))
+    //       .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    getWeatherData();
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -36,6 +78,8 @@ const ChatScreen = ({ navigation, route }) => {
       ),
     });
   }, [navigation]);
+
+  const sendMessage = () => {};
 
   //   const sendMessage = () => {
   //     Keyboard.dismiss();
@@ -101,7 +145,11 @@ const ChatScreen = ({ navigation, route }) => {
                   }}
                 />
                 <Text style={styles.receiverText}>
-                  Smart ChatBot Response Message
+                  {/* Smart ChatBot Response Message */}
+                  {/* {weatherData.map((data) => (
+                    <Text>{data.weather} </Text>
+                  ))} */}
+                  {weatherData.weather}
                 </Text>
               </View>
               <View
@@ -126,7 +174,8 @@ const ChatScreen = ({ navigation, route }) => {
                   }}
                 />
                 <Text style={styles.senderText}>
-                  User's Sample Message
+                  {/* User's Sample Message */}
+                  {input}
                   {/* {data.message} */}
                 </Text>
                 <Text style={styles.senderName}>
@@ -137,14 +186,14 @@ const ChatScreen = ({ navigation, route }) => {
             </ScrollView>
             <View style={styles.footer}>
               <TextInput
-                // value={input}
-                // onChangeText={(text) => setInput(text)}
-                // onSubmitEditing={sendMessage}
+                value={input}
+                onChangeText={(text) => setInput(text)}
+                // onSubmitEditing={getWeatherData("Pune", 1)}
                 placeholder="Signal Message"
                 style={styles.textInput}
               />
               <TouchableOpacity
-                //    onPress={sendMessage}
+                onPress={getWeatherData("Pune", 1)}
                 activeOpacity={0.5}
               >
                 <Ionicons name="send" size={24} color="#2B68E6" />
