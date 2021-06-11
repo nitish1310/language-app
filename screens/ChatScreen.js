@@ -200,9 +200,9 @@ const ChatScreen = ({ navigation, route }) => {
             </ScrollView>
             <View style={styles.footer}>
               <TextInput
-                ref={(textIn) => {
-                  this.textInput = textIn;
-                }}
+                // ref={(textIn) => {
+                //   this.textInput = textIn;
+                // }}
                 value={input}
                 onChangeText={(text) => setInput(text)}
                 onSubmitEditing={sendMessage}
