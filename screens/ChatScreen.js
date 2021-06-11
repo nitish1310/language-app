@@ -39,7 +39,7 @@ const ChatScreen = ({ navigation, route }) => {
   const getWeatherData = (cityName, value) => {
     axios
       // .get(`${url}`)
-      .get(`https://3d34588ea6f4.ngrok.io/weather/${cityName}/${value}`)
+      .get(`https://a7417dba5030.ngrok.io/weather/${cityName}/${value}`)
       .then((response) => {
         const allWeatherData = response.data;
         // for (var i = 0; i < response.data.length; i++) {
@@ -81,7 +81,7 @@ const ChatScreen = ({ navigation, route }) => {
 
   const sendMessage = () => {
     setInput(input);
-    getWeatherData();
+    getWeatherData(input, 2);
   };
 
   //   const sendMessage = () => {
@@ -195,10 +195,7 @@ const ChatScreen = ({ navigation, route }) => {
                 placeholder="Signal Message"
                 style={styles.textInput}
               />
-              <TouchableOpacity
-                onPress={getWeatherData("Pune", 1)}
-                activeOpacity={0.5}
-              >
+              <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
                 <Ionicons name="send" size={24} color="#2B68E6" />
               </TouchableOpacity>
             </View>
