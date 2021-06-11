@@ -79,7 +79,10 @@ const ChatScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  const sendMessage = () => {};
+  const sendMessage = () => {
+    setInput(input);
+    getWeatherData();
+  };
 
   //   const sendMessage = () => {
   //     Keyboard.dismiss();
