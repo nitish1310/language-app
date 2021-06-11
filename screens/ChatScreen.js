@@ -29,7 +29,7 @@ const ChatScreen = ({ navigation, route }) => {
   //   "/" +
   //   route.params.paramWord;
 
-  const url = "https://3d34588ea6f4.ngrok.io/weather/Pune/1";
+  const url = "https://b78387abe43d.ngrok.io/weather/Pune/1";
   // "https://jsonplaceholder.typicode.com/users/";
   // "https://jsonplaceholder.typicode.com/users/" + route.params.paramKey;
   //   console.log(route.params.paramWord);
@@ -39,7 +39,7 @@ const ChatScreen = ({ navigation, route }) => {
   const getWeatherData = (cityName, value) => {
     axios
       // .get(`${url}`)
-      .get(`https://a7417dba5030.ngrok.io/weather/${cityName}/${value}`)
+      .get(`https://b78387abe43d.ngrok.io/weather/${cityName}/${value}`)
       .then((response) => {
         const allWeatherData = response.data;
         // for (var i = 0; i < response.data.length; i++) {
@@ -126,66 +126,78 @@ const ChatScreen = ({ navigation, route }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <>
             <ScrollView contentContainerStyle={{ paddingTop: 15 }}>
-              <View
-                //    key={id}
-                style={styles.receiver}
-              >
-                <Avatar
-                  position="absolute"
-                  rounded
-                  //Web
-                  containerStyle={{
-                    position: "absolute",
-                    bottom: -15,
-                    right: -5,
-                  }}
-                  bottom={-15}
-                  right={-5}
-                  size={30}
-                  source={{
-                    // uri: data.photoURL,
-                    uri: "https://e7.pngegg.com/pngimages/498/917/png-clipart-computer-icons-desktop-chatbot-icon-blue-angle.png",
-                  }}
-                />
-                <Text style={styles.receiverText}>
-                  {/* Smart ChatBot Response Message */}
-                  {/* {weatherData.map((data) => (
+              {weatherData == "" ? (
+                <View>
+                  <Text>Null</Text>
+                </View>
+              ) : (
+                <View
+                  //    key={id}
+                  style={styles.receiver}
+                >
+                  <Avatar
+                    position="absolute"
+                    rounded
+                    //Web
+                    containerStyle={{
+                      position: "absolute",
+                      bottom: -15,
+                      right: -5,
+                    }}
+                    bottom={-15}
+                    right={-5}
+                    size={30}
+                    source={{
+                      // uri: data.photoURL,
+                      uri: "https://e7.pngegg.com/pngimages/498/917/png-clipart-computer-icons-desktop-chatbot-icon-blue-angle.png",
+                    }}
+                  />
+                  <Text style={styles.receiverText}>
+                    {/* Smart ChatBot Response Message */}
+                    {/* {weatherData.map((data) => (
                     <Text>{data.weather} </Text>
                   ))} */}
-                  {weatherData.weather}
-                </Text>
-              </View>
-              <View
-                //  key={id}
-                style={styles.sender}
-              >
-                <Avatar
-                  position="absolute"
-                  rounded
-                  //Web
-                  containerStyle={{
-                    position: "absolute",
-                    bottom: -15,
-                    left: -5,
-                  }}
-                  bottom={-15}
-                  left={-5}
-                  size={30}
-                  source={{
-                    // uri: data.photoURL,
-                    uri: "https://eshendetesia.com/images/user-profile.png",
-                  }}
-                />
-                <Text style={styles.senderText}>
-                  {/* User's Sample Message */}
-                  {input}
-                  {/* {data.message} */}
-                </Text>
-                <Text style={styles.senderName}>
-                  {/* "Display Name" */}
-                  {/* {data.displayName} */}
-                </Text>
-              </View>
+                    {weatherData.weather}
+                  </Text>
+                </View>
+              )}
+              {input == "" ? (
+                <View>
+                  <Text>Null</Text>
+                </View>
+              ) : (
+                <View
+                  //  key={id}
+                  style={styles.sender}
+                >
+                  <Avatar
+                    position="absolute"
+                    rounded
+                    //Web
+                    containerStyle={{
+                      position: "absolute",
+                      bottom: -15,
+                      left: -5,
+                    }}
+                    bottom={-15}
+                    left={-5}
+                    size={30}
+                    source={{
+                      // uri: data.photoURL,
+                      uri: "https://eshendetesia.com/images/user-profile.png",
+                    }}
+                  />
+                  <Text style={styles.senderText}>
+                    {/* User's Sample Message */}
+                    {input}
+                    {/* {data.message} */}
+                  </Text>
+                  <Text style={styles.senderName}>
+                    {/* "Display Name" */}
+                    {/* {data.displayName} */}
+                  </Text>
+                </View>
+              )}
             </ScrollView>
             <View style={styles.footer}>
               <TextInput
