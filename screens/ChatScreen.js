@@ -19,7 +19,7 @@ import axios from "axios";
 
 const ChatScreen = ({ navigation, route }) => {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(0);
   const [weatherData, setWeatherData] = useState([]);
 
   // let language = route.params.paramLang;
@@ -81,6 +81,7 @@ const ChatScreen = ({ navigation, route }) => {
 
   const sendMessage = () => {
     setInput(input);
+    setMessages(1);
     getWeatherData(input, 2);
   };
 
@@ -161,7 +162,7 @@ const ChatScreen = ({ navigation, route }) => {
                   </Text>
                 </View>
               )}
-              {input == "" ? (
+              {messages == 0 ? (
                 <View>
                   <Text>Null</Text>
                 </View>
@@ -203,7 +204,7 @@ const ChatScreen = ({ navigation, route }) => {
               <TextInput
                 value={input}
                 onChangeText={(text) => setInput(text)}
-                // onSubmitEditing={getWeatherData("Pune", 1)}
+                onSubmitEditing={sendMessage}
                 placeholder="Signal Message"
                 style={styles.textInput}
               />
