@@ -82,7 +82,9 @@ const ChatScreen = ({ navigation, route }) => {
   const sendMessage = () => {
     setInput(input);
     setMessages(1);
-    getWeatherData(input, 2);
+    var res = input.substring(6);
+    getWeatherData(res, 1);
+    // this.textInput.clear();
   };
 
   //   const sendMessage = () => {
@@ -128,9 +130,7 @@ const ChatScreen = ({ navigation, route }) => {
           <>
             <ScrollView contentContainerStyle={{ paddingTop: 15 }}>
               {weatherData == "" ? (
-                <View>
-                  <Text>Null</Text>
-                </View>
+                <View></View>
               ) : (
                 <View
                   //    key={id}
@@ -163,9 +163,7 @@ const ChatScreen = ({ navigation, route }) => {
                 </View>
               )}
               {messages == 0 ? (
-                <View>
-                  <Text>Null</Text>
-                </View>
+                <View></View>
               ) : (
                 <View
                   //  key={id}
@@ -202,6 +200,9 @@ const ChatScreen = ({ navigation, route }) => {
             </ScrollView>
             <View style={styles.footer}>
               <TextInput
+                ref={(textIn) => {
+                  this.textInput = textIn;
+                }}
                 value={input}
                 onChangeText={(text) => setInput(text)}
                 onSubmitEditing={sendMessage}
