@@ -29,7 +29,7 @@ const ChatScreen = ({ navigation, route }) => {
   //   "/" +
   //   route.params.paramWord;
 
-  const url = "https://b78387abe43d.ngrok.io/weather/Pune/1";
+  const url = "https:///04cc6c10746e.ngrok.io/weather/Pune/1";
   // "https://jsonplaceholder.typicode.com/users/";
   // "https://jsonplaceholder.typicode.com/users/" + route.params.paramKey;
   //   console.log(route.params.paramWord);
@@ -39,7 +39,7 @@ const ChatScreen = ({ navigation, route }) => {
   const getWeatherData = (cityName, value) => {
     axios
       // .get(`${url}`)
-      .get(`https://b78387abe43d.ngrok.io/weather/${cityName}/${value}`)
+      .get(`https:///04cc6c10746e.ngrok.io/weather/${cityName}/${value}`)
       .then((response) => {
         const allWeatherData = response.data;
         // for (var i = 0; i < response.data.length; i++) {
@@ -82,7 +82,8 @@ const ChatScreen = ({ navigation, route }) => {
   const sendMessage = () => {
     setInput(input);
     setMessages(1);
-    var res = input.substring(6);
+    // var res = input.substring(6);
+    var res = input.split(" ").splice(-1)[0];
     getWeatherData(res, 1);
     // this.textInput.clear();
   };
