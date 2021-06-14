@@ -26,7 +26,7 @@ const screenOptionStyle = {
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator
-      // initialRouteName="Splash"
+      // initialRouteName="Home"
       screenOptions={screenOptionStyle}
     >
       <Stack.Screen name="Splash" component={SplashScreen} />

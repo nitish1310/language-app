@@ -59,7 +59,7 @@ const ChatScreen = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    getWeatherData();
+    // getWeatherData();
   }, []);
 
   useLayoutEffect(() => {
@@ -84,7 +84,16 @@ const ChatScreen = ({ navigation, route }) => {
     setMessages(1);
     // var res = input.substring(6);
     var res = input.split(" ").splice(-1)[0];
-    getWeatherData(res, 1);
+
+    var temperatureStr = input.substring(11, 22);
+    console.log(temperatureStr);
+    //Check
+    if (temperatureStr === "temperature") {
+      getWeatherData(res, 2);
+    } else {
+      getWeatherData(res, 1);
+    }
+
     // this.textInput.clear();
   };
 
@@ -125,7 +134,7 @@ const ChatScreen = ({ navigation, route }) => {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.container}
-        keyboardVerticalOffset={90}
+        keyboardVerticalOffset={150}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <>
