@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -19,6 +19,9 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Card } from "react-native-shadow-cards";
 
 const CourseScreen = ({ navigation, route }) => {
+  const [data, setData] = useState([]);
+  console.log("Data:", data);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "Course",
@@ -35,6 +38,27 @@ const CourseScreen = ({ navigation, route }) => {
       ),
     });
   }, [navigation]);
+
+  const getDataUsingSimpleGetCall = () => {
+    axios
+      .get("https://47d969ca4ad5.ngrok.io/lang/")
+      .then(function (response) {
+        // handle success
+        alert(
+          "Well Done.... Word Translation: " + response.data.translationText
+        );
+        setData(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        alert(error.message);
+      });
+    // .finally(function () {
+    //   // always executed
+    //   alert("Finally called");
+    //   setLoading(false);
+    // });
+  };
 
   return (
     <View style={styles.container}>
@@ -61,6 +85,7 @@ const CourseScreen = ({ navigation, route }) => {
                   paramWord: "Papaya",
                   paramLang: "french",
                   paramImage: require("../assets/papaya.png"),
+                  paramSound: require("../assets/correct.mp3"),
                 })
               }
               style={styles.button}

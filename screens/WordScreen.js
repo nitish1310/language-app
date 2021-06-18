@@ -6,13 +6,20 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  TouchableHighlight,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
+import { AntDesign } from "@expo/vector-icons";
+// import Sound from "react-native-sound";
+import { Audio } from "expo-av";
 
 const WordScreen = ({ navigation, route }) => {
-  const [wordData, setWordData] = useState([]);
+  // const [wordData, setWordData] = useState([]);
+
+  // const sound = new Sound(route.params.paramSound);
+  const [sound, setSound] = React.useState();
 
   let language = route.params.paramLang;
   const url =
@@ -21,16 +28,16 @@ const WordScreen = ({ navigation, route }) => {
     "/" +
     route.params.paramWord;
 
-  const getTranslatedWordData = () => {
-    axios
-      .get(`${url}`)
-      .then((response) => {
-        const allTranslatedWordData = response.data;
+  // const getTranslatedWordData = () => {
+  //   axios
+  //     .get(`${url}`)
+  //     .then((response) => {
+  //       const allTranslatedWordData = response.data;
 
-        setWordData(allTranslatedWordData);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  };
+  //       setWordData(allTranslatedWordData);
+  //     })
+  //     .catch((error) => console.error(`Error: ${error}`));
+  // };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -96,12 +103,58 @@ const WordScreen = ({ navigation, route }) => {
     });
   };
 
+  // const playSound = () => {
+  //   const hello = new Sound(
+  //     route.params.paramSound,
+  //     Sound.MAIN_BUNDLE,
+  //     (error) => {
+  //       if (error) {
+  //         console.log("failed to load the sound", error);
+  //         return;
+  //       }
+  //     }
+  //   );
+  //   // sound.play();
+  // };
+
+  async function playSound() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../assets/correct.mp3")
+    );
+    setSound(sound);
+
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  React.useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
   const Desclist = () => {
     return arrayData?.map((element) => {
       if (element.id == route.params.paramKey) {
         return (
           <View key={element.id} style={{ margin: 10 }}>
-            <Text style={styles.wordTitle}>{element.translatedWord}</Text>
+            <View style={styles.titleContainer}>
+              <View style={styles.titleItem1}>
+                <Text style={styles.wordTitle}>{element.translatedWord}</Text>
+              </View>
+              <View style={styles.titleItem2}>
+                <TouchableOpacity>
+                  <View>
+                    {/* <Icon name="facebook" style={styles.btnIcon} /> */}
+                    <AntDesign name="sound" size={24} color="black" />
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
             <Text style={styles.descriptionText}>{element.description}</Text>
           </View>
         );
@@ -248,5 +301,19 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginTop: 0,
+  },
+  titleContainer: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start", // if you want to fill rows left to right
+  },
+  titleItem1: {
+    width: "70%",
+  },
+  titleItem2: {
+    width: "30%",
+    alignItems: "flex-start",
+    marginTop: 20,
   },
 });
