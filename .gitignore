@@ -14,3 +14,4 @@ web-build/
 package-lock.json
 package.json
 .gitignore
+assets/prompt.mp3

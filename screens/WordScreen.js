@@ -120,7 +120,8 @@ const WordScreen = ({ navigation, route }) => {
   async function playSound() {
     console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync(
-      require("../assets/correct.mp3")
+      // require("../assets/correct.mp3")
+      route.params.paramSound
     );
     setSound(sound);
 
@@ -147,7 +148,7 @@ const WordScreen = ({ navigation, route }) => {
                 <Text style={styles.wordTitle}>{element.translatedWord}</Text>
               </View>
               <View style={styles.titleItem2}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={playSound}>
                   <View>
                     {/* <Icon name="facebook" style={styles.btnIcon} /> */}
                     <AntDesign name="sound" size={24} color="black" />

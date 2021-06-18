@@ -85,7 +85,7 @@ const CourseScreen = ({ navigation, route }) => {
                   paramWord: "Papaya",
                   paramLang: "french",
                   paramImage: require("../assets/papaya.png"),
-                  paramSound: require("../assets/correct.mp3"),
+                  paramSound: require("../assets/prompt.mp3"),
                 })
               }
               style={styles.button}
