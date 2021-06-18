@@ -16,28 +16,30 @@ import { AntDesign } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 
 const WordScreen = ({ navigation, route }) => {
-  // const [wordData, setWordData] = useState([]);
+  const [wordData, setWordData] = useState([]);
 
   // const sound = new Sound(route.params.paramSound);
-  const [sound, setSound] = React.useState();
+  const [sound, setSound] = useState();
 
   let language = route.params.paramLang;
   const url =
-    "https://43f6215f6512.ngrok.io/translate/" +
-    language +
+    " https://015474f4eec5.ngrok.io/lang/" +
+    route.params.paramWord +
     "/" +
-    route.params.paramWord;
+    language;
 
-  // const getTranslatedWordData = () => {
-  //   axios
-  //     .get(`${url}`)
-  //     .then((response) => {
-  //       const allTranslatedWordData = response.data;
+  console.log(url);
 
-  //       setWordData(allTranslatedWordData);
-  //     })
-  //     .catch((error) => console.error(`Error: ${error}`));
-  // };
+  const getTranslatedWordData = () => {
+    axios
+      .get(`${url}`)
+      .then((response) => {
+        const allTranslatedWordData = response.data;
+        console.log(allTranslatedWordData);
+        setWordData(allTranslatedWordData);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -59,8 +61,15 @@ const WordScreen = ({ navigation, route }) => {
   }, [navigation]);
 
   useEffect(() => {
+    getTranslatedWordData();
+  }, [navigation]);
+
+  useEffect(() => {
     // getTranslatedWordData();
-  });
+    setTimeout(() => {
+      playSound();
+    }, 1000);
+  }, []);
 
   const arrayData = [
     {
@@ -129,7 +138,7 @@ const WordScreen = ({ navigation, route }) => {
     await sound.playAsync();
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     return sound
       ? () => {
           console.log("Unloading Sound");

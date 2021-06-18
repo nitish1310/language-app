@@ -11,6 +11,7 @@ import {
   FlatList,
   ActivityIndicator,
   StatusBar,
+  ListItem,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
@@ -59,6 +60,40 @@ const CourseScreen = ({ navigation, route }) => {
     //   setLoading(false);
     // });
   };
+  const arrayData = [
+    {
+      id: "1",
+      paramKey: "1",
+      paramWord: "Papaya",
+      paramLang: "fr",
+      paramImage: require("../assets/papaya.png"),
+      paramSound: require("../assets/prompt.mp3"),
+    },
+    {
+      id: "2",
+      paramKey: "2",
+      paramWord: "Grapes",
+      paramLang: "fr",
+      paramImage: require("../assets/grapes.png"),
+      paramSound: require("../assets/prompt.mp3"),
+    },
+    {
+      id: "3",
+      paramKey: "3",
+      paramWord: "Apples",
+      paramLang: "fr",
+      paramImage: require("../assets/apples.png"),
+      paramSound: require("../assets/prompt.mp3"),
+    },
+    {
+      id: "4",
+      paramKey: "4",
+      paramWord: "Orange",
+      paramLang: "fr",
+      paramImage: require("../assets/oranges.png"),
+      paramSound: require("../assets/prompt.mp3"),
+    },
+  ];
 
   return (
     <View style={styles.container}>
@@ -77,13 +112,50 @@ const CourseScreen = ({ navigation, route }) => {
               title="Try New Word"
             />
           </View>
-          <Card style={{ padding: 10 }}>
+
+          {arrayData?.map((element) => {
+            return (
+              <View key={element.id} style={{ padding: 10 }}>
+                <Card>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("Word", {
+                        paramKey: element.paramKey,
+                        paramWord: element.paramWord,
+                        paramLang: element.paramLang,
+                        paramImage: element.paramImage,
+                        paramSound: element.paramSound,
+                      })
+                    }
+                    style={styles.button}
+                  >
+                    <View style={styles.rowItem}>
+                      <View>
+                        <Text style={styles.rowText}>{element.paramWord}</Text>
+                      </View>
+                      <View>
+                        <Animatable.Image
+                          animation="bounceIn"
+                          duraton="1500"
+                          source={element.paramImage}
+                          style={styles.image}
+                          resizeMode="stretch"
+                        />
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                </Card>
+              </View>
+            );
+          })}
+
+          {/* <Card style={{ padding: 10 }}>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Word", {
                   paramKey: "1",
                   paramWord: "Papaya",
-                  paramLang: "french",
+                  paramLang: "fr",
                   paramImage: require("../assets/papaya.png"),
                   paramSound: require("../assets/prompt.mp3"),
                 })
@@ -195,7 +267,7 @@ const CourseScreen = ({ navigation, route }) => {
                 </View>
               </View>
             </TouchableOpacity>
-          </Card>
+          </Card> */}
         </Animatable.View>
       </ScrollView>
     </View>
