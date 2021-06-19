@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
-  TouchableHighlight,
+  Button,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
@@ -21,7 +21,7 @@ const WordScreen = ({ navigation, route }) => {
   // const sound = new Sound(route.params.paramSound);
   const [sound, setSound] = useState();
 
-  let language = route.params.paramLang;
+  var language = route.params.paramLang;
   const url =
     " https://015474f4eec5.ngrok.io/lang/" +
     route.params.paramWord +
@@ -32,13 +32,24 @@ const WordScreen = ({ navigation, route }) => {
 
   const getTranslatedWordData = () => {
     axios
-      .get(`${url}`)
+      // .get(`${url}`)
+      .get(
+        `https://50004b3885a9.ngrok.io/lang/${route.params.paramWord}/${language}/`
+      )
       .then((response) => {
+        console.log(response);
         const allTranslatedWordData = response.data;
         console.log(allTranslatedWordData);
         setWordData(allTranslatedWordData);
       })
       .catch((error) => console.error(`Error: ${error}`));
+  };
+
+  const test = () => {
+    axios
+      .get("https://50004b3885a9.ngrok.io/lang/grapes/fr/")
+      .then((response) => console.log(response.data))
+      .catch((err) => console.log(err));
   };
 
   useLayoutEffect(() => {
@@ -62,6 +73,8 @@ const WordScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     getTranslatedWordData();
+    // test();
+    console.log("useEffect called");
   }, [navigation]);
 
   useEffect(() => {
@@ -138,6 +151,17 @@ const WordScreen = ({ navigation, route }) => {
     await sound.playAsync();
   }
 
+  const playTrack = () => {
+    async function playSound() {
+      console.log("Loading Sound");
+      const { sound } = await Audio.Sound.createAsync(route.params.paramSound);
+      setSound(sound);
+
+      console.log("Playing Sound");
+      await sound.playAsync();
+    }
+  };
+
   useEffect(() => {
     return sound
       ? () => {
@@ -192,6 +216,7 @@ const WordScreen = ({ navigation, route }) => {
           <View>{Desclist()}</View>
 
           <View style={styles.rule} />
+
           <Text style={styles.textBottom}>Try New Word: </Text>
           <View style={styles.button}>
             <TouchableOpacity
