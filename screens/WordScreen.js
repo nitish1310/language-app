@@ -34,10 +34,16 @@ const WordScreen = ({ navigation, route }) => {
     axios
       // .get(`${url}`)
       .get(
-        `https://50004b3885a9.ngrok.io/lang/${route.params.paramWord}/${language}/`
+        `https://50004b3885a9.ngrok.io/lang/${route.params.paramWord}/${language}/`,
+        {
+          headers: {
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            Pragma: "no-cache",
+            Expires: 0,
+          },
+        }
       )
       .then((response) => {
-        console.log(response);
         const allTranslatedWordData = response.data;
         console.log(allTranslatedWordData);
         setWordData(allTranslatedWordData);
@@ -79,9 +85,10 @@ const WordScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     // getTranslatedWordData();
-    setTimeout(() => {
-      playSound();
-    }, 1000);
+    playSound();
+    // setTimeout(() => {
+    //   playSound();
+    // }, 1000);
   }, []);
 
   const arrayData = [
@@ -93,7 +100,7 @@ const WordScreen = ({ navigation, route }) => {
     },
     {
       id: "2",
-      translatedWord: "Raisins",
+      translatedWord: "Les Raisins",
       description:
         "une baie, généralement verte (classée comme blanche), violette, rouge ou noire, poussant en grappes sur une vigne, consommée comme fruit et utilisée dans la fabrication du vin.",
     },
@@ -183,7 +190,6 @@ const WordScreen = ({ navigation, route }) => {
               <View style={styles.titleItem2}>
                 <TouchableOpacity onPress={playSound}>
                   <View>
-                    {/* <Icon name="facebook" style={styles.btnIcon} /> */}
                     <AntDesign name="sound" size={24} color="black" />
                   </View>
                 </TouchableOpacity>
@@ -348,7 +354,7 @@ const styles = StyleSheet.create({
   },
   titleItem2: {
     width: "30%",
-    alignItems: "flex-start",
+    alignItems: "flex-end",
     marginTop: 20,
   },
 });

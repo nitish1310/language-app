@@ -67,7 +67,7 @@ const CourseScreen = ({ navigation, route }) => {
       paramWord: "Papaya",
       paramLang: "fr",
       paramImage: require("../assets/papaya.png"),
-      paramSound: require("../assets/prompt.mp3"),
+      paramSound: require("../assets/prompt1.mp3"),
     },
     {
       id: "2",
@@ -75,7 +75,7 @@ const CourseScreen = ({ navigation, route }) => {
       paramWord: "Grapes",
       paramLang: "fr",
       paramImage: require("../assets/grapes.png"),
-      paramSound: require("../assets/prompt.mp3"),
+      paramSound: require("../assets/prompt2.mp3"),
     },
     {
       id: "3",
@@ -83,7 +83,7 @@ const CourseScreen = ({ navigation, route }) => {
       paramWord: "Apples",
       paramLang: "fr",
       paramImage: require("../assets/apples.png"),
-      paramSound: require("../assets/prompt.mp3"),
+      paramSound: require("../assets/prompt3.mp3"),
     },
     {
       id: "4",
@@ -91,7 +91,7 @@ const CourseScreen = ({ navigation, route }) => {
       paramWord: "Orange",
       paramLang: "fr",
       paramImage: require("../assets/oranges.png"),
-      paramSound: require("../assets/prompt.mp3"),
+      paramSound: require("../assets/prompt4.mp3"),
     },
   ];
 

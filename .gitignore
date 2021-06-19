@@ -15,3 +15,7 @@ package-lock.json
 package.json
 .gitignore
 assets/prompt.mp3
+assets/prompt1.mp3
+assets/prompt2.mp3
+assets/prompt3.mp3
+assets/prompt4.mp3

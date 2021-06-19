@@ -46,17 +46,6 @@ const TabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name="Settings"
-        component={SettingsStackNavigator}
-        options={{
-          tabBarLabel: "Settings",
-          // tabBarColor: "#427dff",
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="gear" color={color} size={size} />
-          ),
-        }}
-      />
 
       <Tab.Screen
         name="Chats"
@@ -66,6 +55,18 @@ const TabNavigator = () => {
           // tabBarColor: "#427dff",
           tabBarIcon: ({ color, size }) => (
             <Entypo name="chat" color={color} size={size} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Settings"
+        component={SettingsStackNavigator}
+        options={{
+          tabBarLabel: "Settings",
+          // tabBarColor: "#427dff",
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="dots-three-horizontal" size={size} color={color} />
           ),
         }}
       />
