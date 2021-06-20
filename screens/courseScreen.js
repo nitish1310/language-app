@@ -22,6 +22,8 @@ import { Card } from "react-native-shadow-cards";
 const CourseScreen = ({ navigation, route }) => {
   const [data, setData] = useState([]);
   console.log("Data:", data);
+  var lang = route.params.paramLanguage;
+  console.log("Lang:" + lang);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -65,7 +67,7 @@ const CourseScreen = ({ navigation, route }) => {
       id: "1",
       paramKey: "1",
       paramWord: "Papaya",
-      paramLang: "fr",
+      paramLang: lang,
       paramImage: require("../assets/papaya.png"),
       paramSound: require("../assets/prompt1.mp3"),
     },
@@ -73,15 +75,15 @@ const CourseScreen = ({ navigation, route }) => {
       id: "2",
       paramKey: "2",
       paramWord: "Grapes",
-      paramLang: "fr",
+      paramLang: lang,
       paramImage: require("../assets/grapes.png"),
       paramSound: require("../assets/prompt2.mp3"),
     },
     {
       id: "3",
       paramKey: "3",
-      paramWord: "Apples",
-      paramLang: "fr",
+      paramWord: "Apple",
+      paramLang: lang,
       paramImage: require("../assets/apples.png"),
       paramSound: require("../assets/prompt3.mp3"),
     },
@@ -89,7 +91,7 @@ const CourseScreen = ({ navigation, route }) => {
       id: "4",
       paramKey: "4",
       paramWord: "Orange",
-      paramLang: "fr",
+      paramLang: lang,
       paramImage: require("../assets/oranges.png"),
       paramSound: require("../assets/prompt4.mp3"),
     },

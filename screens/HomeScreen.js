@@ -56,6 +56,13 @@ const HomeScreen = ({ navigation }) => {
             </Text>
             <Text style={styles.text}>⭐ 4.5 . By Lorem Ipsum . All Level</Text>
             <TouchableOpacity
+              // onPress={() =>
+              //   navigation.navigate("Course", {
+              //     paramKey: "2",
+              //     paramTitle: "Hindi Language Course",
+              //     paramLanguage: "hi",
+              //   })
+              // }
               onPress={() => alert("Page Under Maintenance....")}
             >
               <LinearGradient
@@ -79,6 +86,7 @@ const HomeScreen = ({ navigation }) => {
                 navigation.navigate("Course", {
                   paramKey: "3",
                   paramTitle: "French Language Course",
+                  paramLanguage: "fr",
                 })
               }
             >

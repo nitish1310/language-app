@@ -22,8 +22,9 @@ const WordScreen = ({ navigation, route }) => {
   const [sound, setSound] = useState();
 
   var language = route.params.paramLang;
+  var conditionLang = "fr";
   const url =
-    " https://015474f4eec5.ngrok.io/lang/" +
+    "https://49136a1892df.ngrok.io/lang/" +
     route.params.paramWord +
     "/" +
     language;
@@ -34,7 +35,7 @@ const WordScreen = ({ navigation, route }) => {
     axios
       // .get(`${url}`)
       .get(
-        `https://50004b3885a9.ngrok.io/lang/${route.params.paramWord}/${language}/`,
+        `https://49136a1892df.ngrok.io/lang/${route.params.paramWord}/${language}/`,
         {
           headers: {
             "Cache-Control": "no-cache, no-store, must-revalidate",
@@ -91,7 +92,7 @@ const WordScreen = ({ navigation, route }) => {
     // }, 1000);
   }, []);
 
-  const arrayData = [
+  const arrayData1 = [
     {
       id: "1",
       translatedWord: "Papaye",
@@ -113,6 +114,33 @@ const WordScreen = ({ navigation, route }) => {
     {
       id: "4",
       translatedWord: "Orange",
+      description:
+        "Une orange est un type d'agrume que les gens mangent souvent. Les oranges sont une très bonne source de vitamine C.Le jus d'orange est une partie importante du petit-déjeuner de nombreuses personnes. L orange douce, qui est celle qui est le plus souvent consommée aujourd'hui, a d'abord poussé en Asie du Sud et de l'Est, mais pousse maintenant dans de nombreuses régions du monde. ",
+    },
+  ];
+
+  const arrayData2 = [
+    {
+      id: "1",
+      translatedWord: "पपीता",
+      description:
+        "पपीता एक फल है।... पपीता का वैज्ञानिक नाम कॅरिका पपया ( carica papaya ) है। इसकी फेमिली केरीकेसी ( Caricaceae ) है। इसका औषधीय उपयोग होता है। पपीता स्वादिष्ट तो होता ही है इसके अलावा स्वास्थ्य के लिए भी लाभकारी है। सहज पाचन योग्य है। पपीता भूख और शक्ति बढ़ाता है। यह प्लीहा, यकृत को रोगमुक्त रखता और पीलिया जैसे रोगाें से मुक्ती देता है। ",
+    },
+    {
+      id: "2",
+      translatedWord: "अंगूर",
+      description:
+        "une baie, généralement verte (classée comme blanche), violette, rouge ou noire, poussant en grappes sur une vigne, consommée comme fruit et utilisée dans la fabrication du vin.",
+    },
+    {
+      id: "3",
+      translatedWord: "सेब",
+      description:
+        "le fruit rond d'un arbre de la famille des roses, qui a généralement une peau fine rouge ou verte et une chair croquante. De nombreuses variétés ont été développées comme desserts ou pour la cuisson des fruits ou pour la fabrication du cidre.",
+    },
+    {
+      id: "4",
+      translatedWord: "संतरा",
       description:
         "Une orange est un type d'agrume que les gens mangent souvent. Les oranges sont une très bonne source de vitamine C.Le jus d'orange est une partie importante du petit-déjeuner de nombreuses personnes. L orange douce, qui est celle qui est le plus souvent consommée aujourd'hui, a d'abord poussé en Asie du Sud et de l'Est, mais pousse maintenant dans de nombreuses régions du monde. ",
     },
@@ -179,7 +207,31 @@ const WordScreen = ({ navigation, route }) => {
   }, [sound]);
 
   const Desclist = () => {
-    return arrayData?.map((element) => {
+    return arrayData1?.map((element) => {
+      if (element.id == route.params.paramKey) {
+        return (
+          <View key={element.id} style={{ margin: 10 }}>
+            <View style={styles.titleContainer}>
+              <View style={styles.titleItem1}>
+                <Text style={styles.wordTitle}>{element.translatedWord}</Text>
+              </View>
+              <View style={styles.titleItem2}>
+                <TouchableOpacity onPress={playSound}>
+                  <View>
+                    <AntDesign name="sound" size={24} color="black" />
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <Text style={styles.descriptionText}>{element.description}</Text>
+          </View>
+        );
+      }
+    });
+  };
+
+  const Desclist2 = () => {
+    return arrayData2?.map((element) => {
       if (element.id == route.params.paramKey) {
         return (
           <View key={element.id} style={{ margin: 10 }}>
@@ -219,7 +271,10 @@ const WordScreen = ({ navigation, route }) => {
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
         <ScrollView style={styles.scrollView}>
           <Text style={styles.text}>Image Conversion: </Text>
-          <View>{Desclist()}</View>
+          <View>
+            {Desclist()}
+            {/* {conditionLang ? Desclist() : Desclist2()} */}
+          </View>
 
           <View style={styles.rule} />
 
