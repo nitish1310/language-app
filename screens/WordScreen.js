@@ -24,7 +24,7 @@ const WordScreen = ({ navigation, route }) => {
   var language = route.params.paramLang;
   var conditionLang = "fr";
   const url =
-    "https://49136a1892df.ngrok.io/lang/" +
+    "https://f46816d567f8.ngrok.io/lang/" +
     route.params.paramWord +
     "/" +
     language;
@@ -35,7 +35,7 @@ const WordScreen = ({ navigation, route }) => {
     axios
       // .get(`${url}`)
       .get(
-        `https://49136a1892df.ngrok.io/lang/${route.params.paramWord}/${language}/`,
+        `https://f46816d567f8.ngrok.io/lang/${route.params.paramWord}/${language}/`,
         {
           headers: {
             "Cache-Control": "no-cache, no-store, must-revalidate",
@@ -52,12 +52,12 @@ const WordScreen = ({ navigation, route }) => {
       .catch((error) => console.error(`Error: ${error}`));
   };
 
-  const test = () => {
-    axios
-      .get("https://50004b3885a9.ngrok.io/lang/grapes/fr/")
-      .then((response) => console.log(response.data))
-      .catch((err) => console.log(err));
-  };
+  // const test = () => {
+  //   axios
+  //     .get("https://6f3404591add.ngrok.io/lang/grapes/fr/")
+  //     .then((response) => console.log(response.data))
+  //     .catch((err) => console.log(err));
+  // };
 
   useLayoutEffect(() => {
     navigation.setOptions({
