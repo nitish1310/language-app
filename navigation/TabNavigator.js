@@ -36,10 +36,10 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Contact"
+        name="Profile"
         component={ContactStackNavigator}
         options={{
-          tabBarLabel: "Contact",
+          tabBarLabel: "Profile",
           // tabBarColor: "#427dff",
           tabBarIcon: ({ color, size }) => (
             <Entypo name="user" color={color} size={size} />

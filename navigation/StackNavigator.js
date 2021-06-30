@@ -12,7 +12,6 @@ import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import NewWordScreen from "../screens/NewWordScreen";
 import ChatScreen from "../screens/ChatScreen";
-import Posts from "../screens/Posts";
 
 const Stack = createStackNavigator();
 
@@ -38,7 +37,6 @@ const MainStackNavigator = () => {
       <Stack.Screen name="Course" component={CourseScreen} />
       <Stack.Screen name="Word" component={WordScreen} />
       <Stack.Screen name="NewWord" component={NewWordScreen} />
-      {/* <Stack.Screen name="Posts" component={Posts} /> */}
     </Stack.Navigator>
   );
 };

@@ -27,7 +27,6 @@ const LoginScreen = ({ navigation }) => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <StatusBar backgroundColor="#5288ff" style="light" />
-      {/* <StatusBar backgroundColor="#009387" barStyle="light-content" /> */}
       <View style={styles.header}>
         <Text style={styles.text_header}>Welcome!</Text>
       </View>

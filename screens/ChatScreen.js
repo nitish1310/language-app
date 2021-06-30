@@ -14,27 +14,13 @@ import { ScrollView } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
 import axios from "axios";
-// import { db, auth } from "../firebase";
-// import firebase from "firebase/app";
 
 const ChatScreen = ({ navigation, route }) => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState(0);
   const [weatherData, setWeatherData] = useState([]);
 
-  // let language = route.params.paramLang;
-  // const url =
-  //   "https://43f6215f6512.ngrok.io/weather/" +
-  //   language +
-  //   "/" +
-  //   route.params.paramWord;
-
-  const url = "https:///f46816d567f8.ngrok.io/weather/Pune/1";
-  // "https://jsonplaceholder.typicode.com/users/";
-  // "https://jsonplaceholder.typicode.com/users/" + route.params.paramKey;
-  //   console.log(route.params.paramWord);
-  //   console.log(language);
-  //   console.log(url);
+  // const url = "https:///f46816d567f8.ngrok.io/weather/Pune/1";
 
   const getWeatherData = (cityName, value) => {
     axios
@@ -42,25 +28,17 @@ const ChatScreen = ({ navigation, route }) => {
       .get(`https:///f46816d567f8.ngrok.io/weather/${cityName}/${value}`)
       .then((response) => {
         const allWeatherData = response.data;
-        // for (var i = 0; i < response.data.length; i++) {
-        //   if (allTranslatedWordData[i].username == "Bret") {
+
         console.log(allWeatherData);
-        // const tempData = allTranslatedWordData[i];
+
         setWeatherData(allWeatherData);
-        //   }
-        // }
       })
       .catch((error) => console.error(`Error: ${error}`));
-
-    //     fetch("https://restcountries.eu/rest/v2/region/africa?fields=name")
-    //       .then((response) => response.json())
-    //       .then((json) => setWordData(json))
-    //       .catch((error) => console.error(error));
   };
 
-  useEffect(() => {
-    // getWeatherData();
-  }, []);
+  // useEffect(() => {
+  //   // getWeatherData();
+  // }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -82,7 +60,7 @@ const ChatScreen = ({ navigation, route }) => {
   const sendMessage = () => {
     setInput(input);
     setMessages(1);
-    // var res = input.substring(6);
+
     var res = input.split(" ").splice(-1)[0];
 
     var temperatureStr = input.substring(11, 22);
@@ -96,38 +74,6 @@ const ChatScreen = ({ navigation, route }) => {
 
     // this.textInput.clear();
   };
-
-  //   const sendMessage = () => {
-  //     Keyboard.dismiss();
-
-  //     db.collection("chats").doc(route.params.id).collection("messages").add({
-  //       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  //       message: input,
-  //       displayName: auth.currentUser.displayName,
-  //       email: auth.currentUser.email,
-  //       photoURL: auth.currentUser.photoURL,
-  //     });
-
-  //     setInput("");
-  //   };
-
-  //   useLayoutEffect(() => {
-  //     const unsubscribe = db
-  //       .collection("chats")
-  //       .doc(route.params.id)
-  //       .collection("messages")
-  //       .orderBy("timestamp", "desc")
-  //       .onSnapshot((snapshot) =>
-  //         setMessages(
-  //           snapshot.docs.map((doc) => ({
-  //             id: doc.id,
-  //             data: doc.data(),
-  //           }))
-  //         )
-  //       );
-
-  //     return unsubscribe;
-  //   }, [route]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>

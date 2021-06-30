@@ -21,7 +21,7 @@ const SettingsScreen = ({ navigation }) => {
   }, [navigation]);
   return (
     <View>
-      <Text>SettingS Screen1</Text>
+      <Text>Settings Screen</Text>
     </View>
   );
 };

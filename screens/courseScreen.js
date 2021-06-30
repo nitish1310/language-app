@@ -14,9 +14,7 @@ import {
   ListItem,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { LinearGradient } from "expo-linear-gradient";
 // import axios from "axios";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Card } from "react-native-shadow-cards";
 
 const CourseScreen = ({ navigation, route }) => {
@@ -42,26 +40,22 @@ const CourseScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  const getDataUsingSimpleGetCall = () => {
-    axios
-      .get("https://47d969ca4ad5.ngrok.io/lang/")
-      .then(function (response) {
-        // handle success
-        alert(
-          "Well Done.... Word Translation: " + response.data.translationText
-        );
-        setData(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        alert(error.message);
-      });
-    // .finally(function () {
-    //   // always executed
-    //   alert("Finally called");
-    //   setLoading(false);
-    // });
-  };
+  // const getDataUsingSimpleGetCall = () => {
+  //   axios
+  //     .get("https://47d969ca4ad5.ngrok.io/lang/")
+  //     .then(function (response) {
+  //       // handle success
+  //       alert(
+  //         "Well Done.... Word Translation: " + response.data.translationText
+  //       );
+  //       setData(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       // handle error
+  //       alert(error.message);
+  //     });
+  // };
+
   const arrayData = [
     {
       id: "1",
@@ -101,10 +95,7 @@ const CourseScreen = ({ navigation, route }) => {
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <ScrollView style={styles.scrollView}>
-        {/* <ActivityIndicator size="large" color="blue" animating={indicator} /> */}
-        <View style={styles.header}>
-          {/* <Text style={styles.title}>French Language Course</Text> */}
-        </View>
+        <View style={styles.header}></View>
 
         <Animatable.View style={styles.footer} animation="fadeInUpBig">
           <View style={{ marginBottom: 20 }}>
@@ -138,7 +129,7 @@ const CourseScreen = ({ navigation, route }) => {
                       <View>
                         <Animatable.Image
                           animation="bounceIn"
-                          duraton="1500"
+                          duration="1500"
                           source={element.paramImage}
                           style={styles.image}
                           resizeMode="stretch"
@@ -150,126 +141,6 @@ const CourseScreen = ({ navigation, route }) => {
               </View>
             );
           })}
-
-          {/* <Card style={{ padding: 10 }}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Word", {
-                  paramKey: "1",
-                  paramWord: "Papaya",
-                  paramLang: "fr",
-                  paramImage: require("../assets/papaya.png"),
-                  paramSound: require("../assets/prompt.mp3"),
-                })
-              }
-              style={styles.button}
-            >
-              <View style={styles.rowItem}>
-                <View>
-                  <Text style={styles.rowText}>Papaya</Text>
-                </View>
-                <View>
-                  <Animatable.Image
-                    animation="bounceIn"
-                    duraton="1500"
-                    source={require("../assets/papaya.png")}
-                    style={styles.image}
-                    resizeMode="stretch"
-                  />
-                </View>
-              </View>
-            </TouchableOpacity>
-          </Card>
-
-          <Card style={{ padding: 10, marginTop: 12 }}>
-            <TouchableOpacity
-              // onPress={() => {
-              //   navigation.navigate("myScreen");
-              // }}
-              onPress={() =>
-                navigation.navigate("Word", {
-                  paramKey: "2",
-                  paramWord: "Grapes",
-                  paramLang: "french",
-                  paramImage: require("../assets/grapes.png"),
-                })
-              }
-              style={styles.button}
-            >
-              <View style={styles.rowItem}>
-                <View>
-                  <Text style={styles.rowText}>Grapes</Text>
-                </View>
-                <View>
-                  <Animatable.Image
-                    animation="bounceIn"
-                    duraton="1500"
-                    source={require("../assets/grapes.png")}
-                    style={styles.image}
-                    resizeMode="stretch"
-                  />
-                </View>
-              </View>
-            </TouchableOpacity>
-          </Card>
-
-          <Card style={{ padding: 10, marginTop: 12 }}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Word", {
-                  paramKey: "3",
-                  paramWord: "Apples",
-                  paramLang: "french",
-                  paramImage: require("../assets/apples.png"),
-                })
-              }
-              style={styles.button}
-            >
-              <View style={styles.rowItem}>
-                <View>
-                  <Text style={styles.rowText}>Apples</Text>
-                </View>
-                <View>
-                  <Animatable.Image
-                    animation="bounceIn"
-                    duraton="1500"
-                    source={require("../assets/apples.png")}
-                    style={styles.image}
-                    resizeMode="stretch"
-                  />
-                </View>
-              </View>
-            </TouchableOpacity>
-          </Card>
-
-          <Card style={{ padding: 10, marginTop: 12 }}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Word", {
-                  paramKey: "4",
-                  paramWord: "Orange",
-                  paramLang: "french",
-                  paramImage: require("../assets/oranges.png"),
-                })
-              }
-              style={styles.button}
-            >
-              <View style={styles.rowItem}>
-                <View>
-                  <Text style={styles.rowText}>Orange</Text>
-                </View>
-                <View>
-                  <Animatable.Image
-                    animation="bounceIn"
-                    duraton="1500"
-                    source={require("../assets/oranges.png")}
-                    style={styles.image}
-                    resizeMode="stretch"
-                  />
-                </View>
-              </View>
-            </TouchableOpacity>
-          </Card> */}
         </Animatable.View>
       </ScrollView>
     </View>
@@ -282,8 +153,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#427dff",
-    // alignItems: "center",
-    // justifyContent: "center",
   },
   header: {
     flex: 0.5,
