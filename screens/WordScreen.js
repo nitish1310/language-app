@@ -98,10 +98,10 @@ const WordScreen = ({ navigation, route }) => {
         "le fruit rond d'un arbre de la famille des roses, qui a généralement une peau fine rouge ou verte et une chair croquante. De nombreuses variétés ont été développées comme desserts ou pour la cuisson des fruits ou pour la fabrication du cidre.",
     },
     {
-      id: "4",
+      id: "5",
       translatedWord: "Orange",
       description:
-        "Une orange est un type d'agrume que les gens mangent souvent. Les oranges sont une très bonne source de vitamine C.Le jus d'orange est une partie importante du petit-déjeuner de nombreuses personnes. L orange douce, qui est celle qui est le plus souvent consommée aujourd'hui, a d'abord poussé en Asie du Sud et de l'Est, mais pousse maintenant dans de nombreuses régions du monde. ",
+        "Une orange est un type  d'agrume que les gens mangent souvent. Les oranges sont une très bonne source de vitamine C.Le jus d'orange est une partie importante du petit-déjeuner de nombreuses personnes. L orange douce, qui est celle qui est le plus souvent consommée aujourd'hui, a d'abord poussé en Asie du Sud et de l'Est, mais pousse maintenant dans de nombreuses régions du monde. ",
     },
   ];
 
