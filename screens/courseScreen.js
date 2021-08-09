@@ -129,7 +129,7 @@ const CourseScreen = ({ navigation, route }) => {
                       <View>
                         <Animatable.Image
                           animation="bounceIn"
-                          duration="1500"
+                          duration={1500}
                           source={element.paramImage}
                           style={styles.image}
                           resizeMode="stretch"

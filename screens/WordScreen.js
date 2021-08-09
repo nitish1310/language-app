@@ -23,7 +23,7 @@ const WordScreen = ({ navigation, route }) => {
   var language = route.params.paramLang;
   var conditionLang = "fr";
   const url =
-    "https://f46816d567f8.ngrok.io/lang/" +
+    "https://e7d59392774c.ngrok.io/lang/" +
     route.params.paramWord +
     "/" +
     language;
@@ -34,7 +34,7 @@ const WordScreen = ({ navigation, route }) => {
     axios
       // .get(`${url}`)
       .get(
-        `https://f46816d567f8.ngrok.io/lang/${route.params.paramWord}/${language}/`,
+        `https://e7d59392774c.ngrok.io/lang/${route.params.paramWord}/${language}/`,
         {
           headers: {
             "Cache-Control": "no-cache, no-store, must-revalidate",

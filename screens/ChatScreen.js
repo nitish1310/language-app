@@ -14,24 +14,43 @@ import { ScrollView } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
 import axios from "axios";
+import * as WebBrowser from "expo-web-browser";
 
 const ChatScreen = ({ navigation, route }) => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState(0);
   const [weatherData, setWeatherData] = useState([]);
+  const [result, setResult] = useState(null);
 
   // const url = "https:///f46816d567f8.ngrok.io/weather/Pune/1";
 
-  const getWeatherData = (cityName, value) => {
+  const getWeatherData = (inputStatement) => {
+    // axios
+    //   // .get(`${url}`)
+    //   .get(`https:///e7d59392774c.ngrok.io/weather/${cityName}/${value}`)
+    //   .then((response) => {
+    //     const allWeatherData = response.data;
+
+    //     console.log(allWeatherData);
+
+    //     setWeatherData(allWeatherData);
+    //   })
+    //   .catch((error) => console.error(`Error: ${error}`));
+
     axios
-      // .get(`${url}`)
-      .get(`https:///f46816d567f8.ngrok.io/weather/${cityName}/${value}`)
-      .then((response) => {
-        const allWeatherData = response.data;
+      // .get(`https://74d437c5351e.ngrok.io/weather/bridgeport/1`)
+      .get(`https:///e7d59392774c.ngrok.io/user/${inputStatement}/en`)
+      .then((res) => {
+        const persons = res.data;
 
-        console.log(allWeatherData);
-
-        setWeatherData(allWeatherData);
+        setWeatherData(persons);
+        // this.setState({ persons });
+        console.log(persons.res);
+        // const msg = new SpeechSynthesisUtterance(persons.weather);
+        // window.speechSynthesis.speak(msg);
+        // let audioPlay = new Audio(soundRes);
+        // audioPlay.play();
+        // this.fun(persons.res);
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
@@ -54,25 +73,44 @@ const ChatScreen = ({ navigation, route }) => {
           <AntDesign name="arrowleft" size={24} color="white" />
         </TouchableOpacity>
       ),
+      headerRight: () => (
+        <TouchableOpacity
+          style={{ marginRight: 20 }}
+          onPress={_handlePressButtonAsync}
+        >
+          <FontAwesome name="microphone" size={24} color="white" />
+        </TouchableOpacity>
+      ),
     });
   }, [navigation]);
 
   const sendMessage = () => {
     setInput(input);
-    setMessages(1);
+    setMessages(input);
 
-    var res = input.split(" ").splice(-1)[0];
+    getWeatherData(input);
 
-    var temperatureStr = input.substring(11, 22);
-    console.log(temperatureStr);
-    //Check
-    if (temperatureStr === "temperature") {
-      getWeatherData(res, 2);
-    } else {
-      getWeatherData(res, 1);
-    }
+    // var res = input.split(" ").splice(-1)[0];
 
+    // var temperatureStr = input.substring(11, 22);
+    // console.log(temperatureStr);
+    // //Check
+    // if (temperatureStr === "temperature") {
+    //   getWeatherData(res, 2);
+    // } else {
+    //   getWeatherData(res, 1);
+    // }
     // this.textInput.clear();
+  };
+
+  const _handlePressButtonAsync = async () => {
+    let result = await WebBrowser.openBrowserAsync(
+      "https://speech-9cd70.web.app/intents",
+      { showTitle: false },
+      { toolbarColor: "#000000" }
+    );
+
+    setResult(result);
   };
 
   return (
@@ -114,7 +152,7 @@ const ChatScreen = ({ navigation, route }) => {
                     {/* {weatherData.map((data) => (
                     <Text>{data.weather} </Text>
                   ))} */}
-                    {weatherData.weather}
+                    {weatherData.res}
                   </Text>
                 </View>
               )}

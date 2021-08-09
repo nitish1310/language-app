@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -16,26 +16,41 @@ import {
 import * as Animatable from "react-native-animatable";
 
 import DropDownPicker from "react-native-dropdown-picker";
+import * as WebBrowser from "expo-web-browser";
+import Constants from "expo-constants";
 
 const NewWordScreen = ({ navigation }) => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "English", value: "english" },
-    { label: "French", value: "french" },
-    { label: "German", value: "german" },
-    { label: "Hindi", value: "hindi" },
-  ]);
+  // const [open, setOpen] = useState(false);
+  // const [value, setValue] = useState(null);
+  // const [items, setItems] = useState([
+  //   { label: "English", value: "english" },
+  //   { label: "French", value: "french" },
+  //   { label: "German", value: "german" },
+  //   { label: "Hindi", value: "hindi" },
+  // ]);
+
+  const [result, setResult] = useState(null);
+
+  const _handlePressButtonAsync = async () => {
+    let result = await WebBrowser.openBrowserAsync(
+      "https://speech-9cd70.web.app/word",
+      { showTitle: false },
+      { toolbarColor: "#000000" }
+    );
+
+    setResult(result);
+  };
+
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
+      {/* <StatusBar barStyle="light" backgroundColor="#5288ff" /> */}
       <ScrollView style={styles.scrollView}>
         <View style={styles.header}>
           {/* <Text style={styles.title}>French Language Course</Text> */}
         </View>
 
         <Animatable.View style={styles.footer} animation="fadeInUpBig">
-          <Text style={styles.text}>Choose Your language : </Text>
+          {/* <Text style={styles.text}>Choose Your language : </Text>
           <DropDownPicker
             open={open}
             value={value}
@@ -43,10 +58,13 @@ const NewWordScreen = ({ navigation }) => {
             setOpen={setOpen}
             setValue={setValue}
             setItems={setItems}
-          />
+          /> */}
 
           <Text style={styles.text}>Try new word:</Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={_handlePressButtonAsync}
+          >
             <Image source={require("../assets/button.png")} />
           </TouchableOpacity>
         </Animatable.View>
