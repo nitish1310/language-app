@@ -39,7 +39,7 @@ const ChatScreen = ({ navigation, route }) => {
 
     axios
       // .get(`https://74d437c5351e.ngrok.io/weather/bridgeport/1`)
-      .get(`https:///e7d59392774c.ngrok.io/user/${inputStatement}/en`)
+      .get(`https:///82f4-24-187-75-143.ngrok.io/user/${inputStatement}/en`)
       .then((res) => {
         const persons = res.data;
 

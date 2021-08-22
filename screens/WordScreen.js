@@ -14,16 +14,29 @@ import axios from "axios";
 import { AntDesign } from "@expo/vector-icons";
 // import Sound from "react-native-sound";
 import { Audio } from "expo-av";
+import * as WebBrowser from "expo-web-browser";
 
 const WordScreen = ({ navigation, route }) => {
   const [wordData, setWordData] = useState([]);
 
   const [sound, setSound] = useState();
 
+  const [result, setResult] = useState(null);
+
+  const _handlePressButtonAsync = async () => {
+    let result = await WebBrowser.openBrowserAsync(
+      "https://speech-9cd70.web.app/word",
+      { showTitle: false },
+      { toolbarColor: "#000000" }
+    );
+
+    setResult(result);
+  };
+
   var language = route.params.paramLang;
   var conditionLang = "fr";
   const url =
-    "https://e7d59392774c.ngrok.io/lang/" +
+    "https://82f4-24-187-75-143.ngrok.io/lang/" +
     route.params.paramWord +
     "/" +
     language;
@@ -34,7 +47,7 @@ const WordScreen = ({ navigation, route }) => {
     axios
       // .get(`${url}`)
       .get(
-        `https://e7d59392774c.ngrok.io/lang/${route.params.paramWord}/${language}/`,
+        `https://82f4-24-187-75-143.ngrok.io/lang/${route.params.paramWord}/${language}/`,
         {
           headers: {
             "Cache-Control": "no-cache, no-store, must-revalidate",
@@ -98,7 +111,7 @@ const WordScreen = ({ navigation, route }) => {
         "le fruit rond d'un arbre de la famille des roses, qui a généralement une peau fine rouge ou verte et une chair croquante. De nombreuses variétés ont été développées comme desserts ou pour la cuisson des fruits ou pour la fabrication du cidre.",
     },
     {
-      id: "5",
+      id: "4",
       translatedWord: "Orange",
       description:
         "Une orange est un type  d'agrume que les gens mangent souvent. Les oranges sont une très bonne source de vitamine C.Le jus d'orange est une partie importante du petit-déjeuner de nombreuses personnes. L orange douce, qui est celle qui est le plus souvent consommée aujourd'hui, a d'abord poussé en Asie du Sud et de l'Est, mais pousse maintenant dans de nombreuses régions du monde. ",
@@ -198,7 +211,7 @@ const WordScreen = ({ navigation, route }) => {
               // onPress={() => {
               //   loginHandle(data.username, data.password);
               // }}
-              onPress={() => navigation.goBack()}
+              onPress={_handlePressButtonAsync}
             >
               <LinearGradient
                 colors={["#09c6f9", "#045de9"]}
@@ -212,7 +225,7 @@ const WordScreen = ({ navigation, route }) => {
                     },
                   ]}
                 >
-                  Go Back
+                  Try the word
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
