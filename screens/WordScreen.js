@@ -36,7 +36,7 @@ const WordScreen = ({ navigation, route }) => {
   var language = route.params.paramLang;
   var conditionLang = "fr";
   const url =
-    "https://82f4-24-187-75-143.ngrok.io/lang/" +
+    "https://applang.herokuapp.com/lang/" +
     route.params.paramWord +
     "/" +
     language;
@@ -47,7 +47,7 @@ const WordScreen = ({ navigation, route }) => {
     axios
       // .get(`${url}`)
       .get(
-        `https://82f4-24-187-75-143.ngrok.io/lang/${route.params.paramWord}/${language}/`,
+        `https://applang.herokuapp.com/lang/${route.params.paramWord}/${language}/`,
         {
           headers: {
             "Cache-Control": "no-cache, no-store, must-revalidate",
